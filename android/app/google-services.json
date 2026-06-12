@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "226030329230",
+    "project_id": "titra-672b0",
+    "storage_bucket": "titra-672b0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226030329230:android:7b87badfbb7a9d844d18df",
+        "android_client_info": {
+          "package_name": "com.shahir.titra"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAMhwN6l-P79Kzp7Gvs6er070Pinq3rSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

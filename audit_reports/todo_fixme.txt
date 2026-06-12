@@ -1,0 +1,4 @@
+lib/features/chat/presentation/view/chat_screen.dart:934:    // TODO: implement dispose
+lib/features/chat/presentation/view/chat_screen.dart:1346:        .toDouble();
+lib/features/onboarding/presentation/view/onboarding_screen.dart:154:            onTap: () { /* TODO: open Terms */ },
+lib/features/onboarding/presentation/view/onboarding_screen.dart:159:            onTap: () { /* TODO: open Privacy Policy */ },

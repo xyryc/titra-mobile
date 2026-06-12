@@ -1,0 +1,27 @@
+Analyzing titra-mobile...
+
+warning - lib/features/bottom_navigation/presentation/view/bottom_nav_screen.dart:3:8 - Unused import: 'package:dot_curved_bottom_nav/dot_curved_bottom_nav.dart'. Try removing the import directive. - unused_import
+warning - lib/features/bottom_navigation/presentation/view/bottom_nav_screen.dart:201:17 - A value for optional parameter 'badge' isn't ever given. Try removing the unused parameter. - unused_element_parameter
+warning - lib/features/bottom_navigation/presentation/view/bottom_nav_screen.dart:274:10 - The declaration '_buildNavSvg' isn't referenced. Try removing the declaration of '_buildNavSvg'. - unused_element
+warning - lib/features/chat/presentation/view/chat_screen.dart:1421:11 - The value of the local variable 'hasCaption' isn't used. Try removing the variable or using it. - unused_local_variable
+warning - lib/features/chat/presentation/view/chat_screen.dart:1582:11 - The value of the local variable 'baseStyle' isn't used. Try removing the variable or using it. - unused_local_variable
+warning - lib/features/home/presentation/view/home_screen.dart:1:8 - Unused import: 'package:dot_curved_bottom_nav/dot_curved_bottom_nav.dart'. Try removing the import directive. - unused_import
+warning - lib/features/home/presentation/view/home_screen.dart:3:8 - Unused import: 'package:flutter_svg/flutter_svg.dart'. Try removing the import directive. - unused_import
+warning - lib/features/home/presentation/view/home_screen.dart:7:8 - Unused import: 'package:titra/features/home/presentation/view/add_person_screen.dart'. Try removing the import directive. - unused_import
+warning - lib/features/home/presentation/view/home_screen.dart:8:8 - Unused import: 'package:titra/features/home/presentation/view/create_group_screen.dart'. Try removing the import directive. - unused_import
+warning - lib/features/home/presentation/view/home_screen.dart:45:11 - The value of the local variable 'size' isn't used. Try removing the variable or using it. - unused_local_variable
+   info - lib/core/constants/app_size.dart:21:29 - 'textScaleFactor' is deprecated and shouldn't be used. Use textScaler instead. Use of textScaleFactor was deprecated in preparation for the upcoming nonlinear text scaling support. This feature was deprecated after v3.12.0-2.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib/core/local_db/app_database.dart:49:15 - Parameter 'executor' could be a super parameter. Trying converting 'executor' to a super parameter. - use_super_parameters
+   info - lib/core/widgets/SuccessBar/successbar.dart:107:41 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib/core/widgets/floatingbar/floatingbar.dart:107:41 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib/features/bottom_navigation/presentation/view/bottom_nav_screen.dart:151:46 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib/features/bottom_navigation/presentation/view/bottom_nav_screen.dart:233:47 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib/features/bottom_navigation/presentation/view/bottom_nav_screen.dart:397:40 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib/features/bottom_navigation/presentation/view/bottom_nav_screen.dart:409:52 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib/features/bottom_navigation/presentation/view/bottom_nav_screen.dart:436:46 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib/features/call/data/group_mesh_call_coordinator.dart:67:5 - The 'if' statement could be replaced by a null-aware assignment. Try using the '??=' operator to conditionally assign a value. - prefer_conditional_assignment
+   info - lib/features/chat/presentation/view/chat_screen.dart:1539:27 - Unnecessary use of multiple underscores. Try using '_'. - unnecessary_underscores
+   info - lib/features/chat/presentation/view/chat_screen.dart:1539:31 - Unnecessary use of multiple underscores. Try using '_'. - unnecessary_underscores
+   info - lib/features/profile/presentation/view/profile_content.dart:450:37 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+
+23 issues found.

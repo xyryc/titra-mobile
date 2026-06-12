@@ -1,0 +1,121 @@
+lib/core/realtime/realtime_service.dart:161:        debugPrint('RealtimeService connected');
+lib/core/realtime/realtime_service.dart:167:        debugPrint('RealtimeService disconnected');
+lib/core/realtime/realtime_service.dart:173:      debugPrint('RealtimeService connect failed: $e\n$st');
+lib/core/realtime/realtime_service.dart:226:      debugPrint(
+lib/core/realtime/realtime_service.dart:242:      debugPrint(
+lib/core/push/fcm_notification_display.dart:102:  debugPrint(
+lib/core/push/fcm_notification_display.dart:192:    debugPrint('[Push] incoming_call local notification shown id=$nid');
+lib/core/push/fcm_notification_display.dart:214:  debugPrint('[Push] chat/other local notification shown id=$nid type=$type');
+lib/core/push/fcm_notification_display.dart:216:    debugPrint('[Push] showFcmMessageAsLocalNotification failed: $e\n$st');
+lib/core/push/push_notification_controller.dart:50:      debugPrint('[Push] pendingOpen already loaded, skipping cache hydrate');
+lib/core/push/push_notification_controller.dart:72:      debugPrint('[Push] loaded pending notification from cache (once only)');
+lib/core/push/push_notification_controller.dart:74:      debugPrint('[Push] hydrate pending notification failed: $e\n$st');
+lib/core/push/push_notification_controller.dart:88:      debugPrint('[Push] Firebase init failed (configure firebase_options.dart): $e\n$st',);
+lib/core/push/push_notification_controller.dart:91:    debugPrint('[Push] Firebase initialized for push');
+lib/core/push/push_notification_controller.dart:112:          debugPrint(
+lib/core/push/push_notification_controller.dart:127:          debugPrint(
+lib/core/push/push_notification_controller.dart:137:        debugPrint(
+lib/core/push/push_notification_controller.dart:158:      debugPrint(
+lib/core/push/push_notification_controller.dart:162:      debugPrint('[Push] getNotificationSettings: $e');
+lib/core/push/push_notification_controller.dart:168:      debugPrint(
+lib/core/push/push_notification_controller.dart:177:      debugPrint(
+lib/core/push/push_notification_controller.dart:187:      debugPrint(
+lib/core/push/push_notification_controller.dart:202:    debugPrint('[Push] PushNotificationController.initialize() done');
+lib/core/push/push_notification_controller.dart:220:      debugPrint('[Push] Realtime not connected after ${timeout.inSeconds}s, scheduling retry');
+lib/core/push/push_notification_controller.dart:272:      debugPrint('[Push] skip getToken: no session yet');
+lib/core/push/push_notification_controller.dart:283:      debugPrint('[Push] FCM token already registered, skipping');
+lib/core/push/push_notification_controller.dart:300:      debugPrint('[Push] register token failed: $e\n$st');
+lib/core/push/push_notification_controller.dart:305:    debugPrint(
+lib/core/push/push_notification_controller.dart:406:          debugPrint('[Push] incoming_call presentFromPushData: $e\n$st');
+lib/core/push/push_notification_controller.dart:428:      debugPrint('[Push] accept incoming call realtimeConnected=$connected');
+lib/core/push/push_notification_controller.dart:456:      debugPrint('[Push] incoming_call accept action failed: $e\n$st');
+lib/core/push/push_notification_controller.dart:503:          debugPrint('[Push] incoming_call route: $e\n$st');
+lib/core/push/native_call_bridge.dart:24:      debugPrint('[NativeCallBridge] getPendingCall failed: $e\n$st');
+lib/core/push/native_call_bridge.dart:34:      debugPrint('[NativeCallBridge] notifyCallHandled failed: $e\n$st');
+lib/core/push/native_call_bridge.dart:43:      debugPrint('[NativeCallBridge] clearPendingCall failed: $e\n$st');
+lib/core/push/background_fcm_handler.dart:33:  debugPrint(
+lib/core/push/background_fcm_handler.dart:38:    debugPrint('[Push] Android incoming_call handled by native FCM service');
+lib/core/push/background_fcm_handler.dart:59:  debugPrint('[Push] background FCM handler finished');
+lib/core/push/push_token_repository.dart:29:            debugPrint('[PushTokenRepo] Rate limit exceeded after $attempts attempts');
+lib/features/chat/presentation/view_models/chat_view_model.dart:211:  //       debugPrint('[ChatVM] ⚠️ bootstrap() timeout, forcing loading=false');
+lib/features/chat/presentation/view_models/chat_view_model.dart:229:  //       debugPrint('[ChatVM] ✅ Resolved conversationId from params: $_resolvedConversationId');
+lib/features/chat/presentation/view_models/chat_view_model.dart:237:  //       debugPrint('[ChatVM] 🔄 Creating direct conversation for: $digits');
+lib/features/chat/presentation/view_models/chat_view_model.dart:239:  //       debugPrint('[ChatVM] ✅ Direct conversation created: $_resolvedConversationId');
+lib/features/chat/presentation/view_models/chat_view_model.dart:269:  //     debugPrint('[ChatVM] ❌ bootstrap failed: $e\n$st');
+lib/features/chat/presentation/view_models/chat_view_model.dart:275:  //     debugPrint('[ChatVM] 📊 State -> loading: $_loading, error: $_loadError, convId: $_resolvedConversationId');
+lib/features/chat/presentation/view_models/chat_view_model.dart:338:      debugPrint('[ChatVM] bootstrap failed: $e\n$st');
+lib/features/chat/presentation/view_models/chat_view_model.dart:358:      debugPrint('[ChatVM] Background hydration failed: $e\n$st');
+lib/features/call/data/web_rtc_call_session.dart:97:    debugPrint('[WebRtc] iceServers count=$n: $summary');
+lib/features/call/data/web_rtc_call_session.dart:136:      debugPrint('[WebRtc] iceConnectionState=$s');
+lib/features/call/data/web_rtc_call_session.dart:145:      debugPrint('[WebRtc] connectionState=$s');
+lib/features/call/data/web_rtc_call_session.dart:155:    debugPrint('[WebRtc] established source=$source');
+lib/features/call/data/web_rtc_call_session.dart:194:      debugPrint('[WebRtc] audio configuration: $e\n$st');
+lib/features/call/data/web_rtc_call_session.dart:207:        debugPrint('[WebRtc] inbound track (no stream): $err\n$st');
+lib/features/call/data/web_rtc_call_session.dart:268:      debugPrint(
+lib/features/call/data/web_rtc_call_session.dart:298:    debugPrint('[WebRtc] startAsCallee answer sent');
+lib/features/call/data/web_rtc_call_session.dart:332:        debugPrint('[WebRtc] Connection wait timeout, checking current state');
+lib/features/call/data/web_rtc_call_session.dart:371:        debugPrint('[WebRtc] addCandidate failed: $e\n$st');
+lib/features/call/data/web_rtc_call_session.dart:402:      debugPrint('[WebRtc] addCandidate: $e\n$st');
+lib/features/call/data/outgoing_ringback.dart:40:      debugPrint('[OutgoingRingback] load $e\n$st');
+lib/features/call/data/outgoing_ringback.dart:69:        debugPrint('[OutgoingRingback] cadence $e\n$st');
+lib/features/call/data/call_foreground_service.dart:65://       debugPrint('[CallForegroundService] start failed: ${result.error}');
+lib/features/call/data/call_foreground_service.dart:78://       debugPrint('[CallForegroundService] stop failed: ${result.error}');
+lib/features/call/data/call_foreground_service.dart:94://       debugPrint('[CallForegroundService] update failed: ${result.error}');
+lib/features/call/data/call_end_tone.dart:46:    debugPrint('[CallEndTone] $e\n$st');
+lib/features/call/data/incoming_call_coordinator.dart:101:      debugPrint('[IncomingCallCoordinator] pre-screen call.state: ${data['state']}');
+lib/features/call/data/incoming_call_coordinator.dart:107:      debugPrint('[IncomingCallCoordinator] pre-screen buffering signal: $signalType');
+lib/features/call/data/incoming_call_coordinator.dart:226:      debugPrint('[IncomingCall] ringtone: $e\n$st');
+lib/features/call/data/incoming_call_coordinator.dart:478:    debugPrint(
+lib/features/call/data/incoming_call_coordinator.dart:532:        debugPrint('[IncomingCall] group acceptFromPushData: $e\n$st');
+lib/features/call/data/incoming_call_coordinator.dart:641:        debugPrint('[IncomingCall] group accept: $e\n$st');
+lib/features/call/data/incoming_call_ringtone.dart:42:      debugPrint('[IncomingCallRingtone] $e\n$st');
+lib/features/call/data/group_mesh_call_coordinator.dart:114:      debugPrint('[GroupMesh] signal $signalType from $from: $e\n$st');
+lib/features/call/data/native_call_ui.dart:110://       debugPrint('[NativeCallUi] showIncomingCall: $e\n$st');
+lib/features/call/data/native_call_ui.dart:123://       debugPrint('[NativeCallUi] dismissIncomingUi: $e\n$st');
+lib/features/call/data/native_call_ui.dart:134://       debugPrint('[NativeCallUi] setConnected: $e\n$st');
+lib/features/call/data/native_call_ui.dart:145://       debugPrint('[NativeCallUi] endCall: $e\n$st');
+lib/features/call/data/native_call_ui.dart:161://       debugPrint('[NativeCallUi] getVoipPushToken: $e\n$st');
+lib/features/call/presentation/view_models/group_audio_call_view_model.dart:192:      debugPrint('[GroupAudioCall] $e\n$st');
+lib/features/call/presentation/view_models/group_audio_call_view_model.dart:218:      debugPrint('[GroupAudioCall] audio route: $e\n$st');
+lib/features/call/presentation/view_models/group_video_call_view_model.dart:199:      debugPrint('[GroupVideoCall] $e\n$st');
+lib/features/call/presentation/view_models/group_video_call_view_model.dart:225:      debugPrint('[GroupVideoCall] speaker: $e\n$st');
+lib/features/call/presentation/view_models/video_call_view_model.dart:155:        debugPrint(
+lib/features/call/presentation/view_models/video_call_view_model.dart:196:            debugPrint(
+lib/features/call/presentation/view_models/video_call_view_model.dart:239:            debugPrint(
+lib/features/call/presentation/view_models/video_call_view_model.dart:266:          debugPrint(
+lib/features/call/presentation/view_models/video_call_view_model.dart:273:          debugPrint(
+lib/features/call/presentation/view_models/video_call_view_model.dart:286:          debugPrint(
+lib/features/call/presentation/view_models/video_call_view_model.dart:293:            debugPrint(
+lib/features/call/presentation/view_models/video_call_view_model.dart:297:          debugPrint(
+lib/features/call/presentation/view_models/video_call_view_model.dart:305:          debugPrint(
+lib/features/call/presentation/view_models/video_call_view_model.dart:316:      debugPrint('[VideoCall] $e\n$st');
+lib/features/call/presentation/view_models/video_call_view_model.dart:348:        debugPrint('[VideoCall] replay ICE: $e\n$st');
+lib/features/call/presentation/view_models/video_call_view_model.dart:405:      debugPrint('[VideoCall] speaker: $e\n$st');
+lib/features/call/presentation/view_models/video_call_view_model.dart:442:    debugPrint(
+lib/features/call/presentation/view_models/video_call_view_model.dart:466:    debugPrint(
+lib/features/call/presentation/view_models/video_call_view_model.dart:499:    debugPrint(
+lib/features/call/presentation/view_models/video_call_view_model.dart:543:            debugPrint(
+lib/features/call/presentation/view_models/video_call_view_model.dart:558:            debugPrint(
+lib/features/call/presentation/view_models/video_call_view_model.dart:565:            debugPrint(
+lib/features/call/presentation/view_models/video_call_view_model.dart:586:      debugPrint('[VideoCall] signal $signalType: $e\n$st');
+lib/features/call/presentation/view_models/audio_call_view_model.dart:159:        debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:199:            debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:239:            debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:266:          debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:273:          debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:286:          debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:293:            debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:297:          debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:304:          debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:315:      debugPrint('[AudioCall] $e\n$st');
+lib/features/call/presentation/view_models/audio_call_view_model.dart:347:        debugPrint('[AudioCall] replay ICE: $e\n$st');
+lib/features/call/presentation/view_models/audio_call_view_model.dart:382:    debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:413:    debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:438:    debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:471:    debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:515:            debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:527:            debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:534:            debugPrint(
+lib/features/call/presentation/view_models/audio_call_view_model.dart:555:      debugPrint('[AudioCall] signal $signalType: $e\n$st');
+lib/features/call/presentation/view_models/audio_call_view_model.dart:597:    debugPrint(
+lib/main.dart:20:      debugPrint('[Push] Firebase not initialized (see firebase_options.dart): $e\n$st');

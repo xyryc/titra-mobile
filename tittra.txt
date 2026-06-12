@@ -1,0 +1,354 @@
+── INCOMING ──────────────────────────────────
+FCM Push
+  ↓
+flutter_callkit_incoming → Full-screen System Call UI
+  ↓
+Accept → CallScreen()
+  ↓
+Back press → System Overlay (flutter_overlay_window)
+  ↓
+Overlay tap → CallScreen() back
+  ↓
+Call end → closeOverlay()
+
+── OUTGOING ──────────────────────────────────
+User dials → CallScreen() (ringing state)
+  ↓
+Other side accepts (WebSocket/WebRTC signal)
+  ↓
+Back press → System Overlay শুরু হয়
+  ↓
+Overlay tap → CallScreen() back
+  ↓
+Call end → closeOverlay()
+
+
+
+
+Overlay দেখানো
+dartFuture<void> showCallOverlay(String callerName, String duration) async {
+  if (!await FlutterOverlayWindow.isPermissionGranted()) {
+    await FlutterOverlayWindow.requestPermission();
+    return;
+  }
+
+  await FlutterOverlayWindow.showOverlay(
+    enableDrag: false,
+    flag: OverlayFlag.defaultFlag,
+    visibility: NotificationVisibility.visibilityPublic,
+    positionGravity: PositionGravity.top,
+    height: 72,
+    width: WindowSize.matchParent,
+  );
+
+  // Overlay এ data পাঠাও
+  FlutterOverlayWindow.shareData({
+    'callerName': callerName,
+    'status': 'connected',
+  });
+}
+Overlay Widget — overlayMain()
+dart@pragma("vm:entry-point")
+void overlayMain() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: _CallOverlay(),
+  ));
+}
+
+class _CallOverlay extends StatefulWidget {
+  @override
+  State<_CallOverlay> createState() => _CallOverlayState();
+}
+
+class _CallOverlayState extends State<_CallOverlay> {
+  String callerName = '';
+  String duration = '00:00';
+  Timer? _timer;
+  int _seconds = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    // Data receive করো
+    FlutterOverlayWindow.overlayListener.listen((data) {
+      setState(() => callerName = data['callerName'] ?? '');
+    });
+    // Timer চালাও
+    _timer = Timer.periodic(Duration(seconds: 1), (_) {
+      _seconds++;
+      final m = (_seconds ~/ 60).toString().padLeft(2, '0');
+      final s = (_seconds % 60).toString().padLeft(2, '0');
+      setState(() => duration = '$m:$s');
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () async {
+        // App এ ফিরে যাও
+        await FlutterOverlayWindow.closeOverlay();
+        // App foreground এ আনো
+        FlutterOverlayWindow.shareData({'action': 'return_to_call'});
+      },
+      child: Container(
+        color: Color(0xFF00A884), // WhatsApp green
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          children: [
+            Icon(Icons.call, color: Colors.white, size: 20),
+            SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(callerName,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600)),
+                  Text(duration,
+                      style: TextStyle(color: Colors.white70, fontSize: 11)),
+                ],
+              ),
+            ),
+            Icon(Icons.arrow_forward_ios, color: Colors.white, size: 14),
+          ],
+        ),
+      ),
+    );
+  }
+}
+Overlay থেকে App এ ফেরা — main.dart
+dart// App foreground এ থাকলে এই listener দিয়ে handle করো
+FlutterOverlayWindow.overlayListener.listen((data) {
+  if (data['action'] == 'return_to_call') {
+    navigatorKey.currentState?.pushNamed('/call-screen');
+  }
+});
+
+AndroidManifest.xml
+xml<!-- Overlay permission -->
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+<!-- overlayMain entry point -->
+<activity
+  android:name=".MainActivity"
+  android:showOnLockScreen="true"
+  android:turnScreenOn="true">
+</activity>
+
+Summary Table
+SituationOverlay দেখাবে?Incoming → Accept → Back✅ হ্যাঁOutgoing → Ringing → Back❌ না (cancel হবে)Outgoing → Accepted → Back✅ হ্যাঁCall end (যেকোনো side)❌ Overlay বন্ধ
+
+
+
+
+
+9:54 PM
+পারফেক্ট! তাহলে আপনার দরকার:
+
+Incoming call → Full-screen system call UI (lock screen এর উপরেও দেখাবে)
+Call active + back press → Floating overlay bubble (সব app এর উপরে)
+এর জন্য Flutter-এ যা লাগবে:
+
+Architecture Overview
+১. Incoming Call UI (Full-screen)
+flutter_callkit_incoming package ব্যবহার করবেন।
+
+Android এ ConnectionService + InCallService use করে
+Lock screen এর উপরেও show করে
+Accept / Decline button built-in
+২. Call-in-progress Overlay Bubble
+flutter_overlay_window package ব্যবহার করবেন।
+
+Android SYSTEM_ALERT_WINDOW permission use করে
+যেকোনো app এর উপরে float করবে
+WhatsApp এর green bar এর মতো
+Step-by-step Implementation
+pubspec.yaml
+yaml
+dependencies:
+  flutter_callkit_incoming: ^2.0.0
+  flutter_overlay_window: ^0.3.0
+AndroidManifest.xml এ permissions
+xml
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+<uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
+<uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+<!-- Overlay window entry point -->
+<activity
+  android:name="com.example.app.MainActivity"
+  android:showOnLockScreen="true"
+  android:turnScreenOn="true"/>
+Incoming Call দেখানো
+dart
+import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
+
+Future<void> showIncomingCall({
+  required String callId,
+  required String callerName,
+  required String callerNumber,
+}) async {
+  final params = CallKitParams(
+    id: callId,
+    nameCaller: callerName,
+    appName: 'YourApp',
+    handle: callerNumber,
+    type: 0, // 0 = audio, 1 = video
+    duration: 30000,
+    android: const AndroidParams(
+      isCustomNotification: true,
+      isShowLogo: false,
+      ringtonePath: 'system_ringtone_default',
+      backgroundColor: '#0955fa',
+      backgroundUrl: null,
+      actionColor: '#4CAF50',
+      textColor: '#ffffff',
+      isShowCallID: false,
+    ),
+  );
+  await FlutterCallkitIncoming.showCallkitIncoming(params);
+}
+Call Event Listen করা
+dart
+FlutterCallkitIncoming.onEvent.listen((event) {
+  switch (event!.event) {
+    case Event.actionCallAccept:
+      // Call accept → navigate to call screen
+      navigateToCallScreen(event.body['id']);
+      break;
+    case Event.actionCallDecline:
+      // Call decline
+      endCall(event.body['id']);
+      break;
+    case Event.actionCallEnded:
+      // Call ended → remove overlay
+      FlutterOverlayWindow.closeOverlay();
+      break;
+    default:
+      break;
+  }
+});
+Overlay Bubble (Call screen থেকে back গেলে)
+dart
+import 'package:flutter_overlay_window/flutter_overlay_window.dart';
+
+// Permission check
+Future<void> requestOverlayPermission() async {
+  if (!await FlutterOverlayWindow.isPermissionGranted()) {
+    await FlutterOverlayWindow.requestPermission();
+  }
+}
+
+// Overlay show করুন
+Future<void> showCallOverlay() async {
+  await FlutterOverlayWindow.showOverlay(
+    enableDrag: true,
+    overlayTitle: "Call in progress",
+    overlayContent: "Tap to return",
+    flag: OverlayFlag.defaultFlag,
+    visibility: NotificationVisibility.visibilityPublic,
+    positionGravity: PositionGravity.auto,
+    height: 80,
+    width: WindowSize.matchParent,
+  );
+}
+
+// Overlay এর ভেতরে tap করলে call screen এ ফিরে যাওয়া
+@pragma("vm:entry-point")
+void overlayMain() {
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: CallOverlayWidget(),
+    ),
+  );
+}
+Overlay Widget (WhatsApp bar এর মতো)
+dart
+class CallOverlayWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        // Overlay tap → app এ ফিরে যাও
+        FlutterOverlayWindow.closeOverlay();
+        // তারপর app open করুন
+      },
+      child: Container(
+        color: Colors.green,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Row(
+          children: [
+            Icon(Icons.call, color: Colors.white),
+            SizedBox(width: 8),
+            Text("Call in progress - tap to return",
+                style: TextStyle(color: Colors.white)),
+            Spacer(),
+            Icon(Icons.arrow_forward_ios, color: Colors.white, size: 14),
+          ],
+        ),
+      ),
+    );
+  }
+}
+Call Screen এ Back Press Handle
+dart
+WillPopScope(
+  onWillPop: () async {
+    // Back press এ overlay দেখাও, app minimize করো
+    await showCallOverlay();
+    // App minimize
+    SystemNavigator.pop();
+    return false; // back navigate করবে না
+  },
+  child: CallScreen(),
+)
+Flow Summary
+FCM/WebSocket notification
+        ↓
+showIncomingCall() → Full-screen call UI
+        ↓
+User accepts → CallScreen()
+        ↓
+Back press → showCallOverlay() + app minimize
+        ↓
+Overlay tap → CallScreen() এ ফিরে আসা
+        ↓
+Call end → closeOverlay() + navigate back
+আপনার কি signaling এর জন্য WebRTC (like flutter_webrtc) আছে, নাকি শুধু UI part টা দরকার? সেটা জানালে audio/video integration সহ পুরো flow দিতে পারব।
+
+korar try korchi but kivabe bolle valo hoi are holo active call er somoi only jokhon call accept kori then eita ovarlay eita in app feature bad diye ovelay FCM/WebSocket notification
+        ↓
+showIncomingCall() → Full-screen call UI
+        ↓
+User accepts → CallScreen()
+        ↓
+Back press → showCallOverlay() + app minimize
+        ↓
+Overlay tap → CallScreen() এ ফিরে আসা
+        ↓
+Call end → closeOverlay() + navigate back outgoing call er somoi ki kaj korbe jokhon onno user accept korbe
+
+Show more
+9:56 PM
+বুঝেছি! আপনি চান:
+
+In-app overlay বাদ — শুধু system-level overlay
+Incoming + Outgoing দুটোতেই কাজ করবে
+Outgoing এ যখন other user accept করবে → তখন থেকে overlay শুরু
+Updated Flow
+── INCOMING ──────────────────────────────────
+FCM Push

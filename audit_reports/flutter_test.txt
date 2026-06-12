@@ -1,0 +1,4 @@
+Waiting for another flutter command to release the startup lock...
+00:00 +0: loading /Users/rosdeb/All_Project/titra-mobile/test/widget_test.dart
+00:00 +0: TitraApp builds without throwing
+00:00 +1: All tests passed!
