@@ -202,8 +202,8 @@ class _AppCoordinatorState extends State<_AppCoordinator>
     if (state == AppLifecycleState.paused) {
       final coord = context.read<IncomingCallCoordinator>();
       final active = coord.activeCall;
-      // Show overlay only if there is an active call and the call screen is NOT currently visible
-      if (active != null && !coord.isCallScreenVisible) {
+      // Show overlay if there is an active call and we are going to background
+      if (active != null) {
         unawaited(coord.showActiveCallOverlay());
       }
     } else if (state == AppLifecycleState.resumed) {

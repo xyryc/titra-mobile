@@ -211,7 +211,6 @@ class _VideoCallViewState extends State<_VideoCallView> {
       darkStyle: true,
       onBack: () {
         _coordinator?.setCallScreenVisible(false);
-        unawaited(_coordinator?.showActiveCallOverlay());
         Navigator.of(context).pop();
       },
     );

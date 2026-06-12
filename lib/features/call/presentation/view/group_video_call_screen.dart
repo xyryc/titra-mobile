@@ -107,7 +107,6 @@ class _GroupVideoCallViewState extends State<_GroupVideoCallView> {
     _labelsHideTimer?.cancel();
     _vm?.removeListener(_handleVmChanged);
     _coordinator?.setCallScreenVisible(false);
-    unawaited(_coordinator?.showActiveCallOverlay());
     _coordinator = null;
     _vm = null;
     super.dispose();

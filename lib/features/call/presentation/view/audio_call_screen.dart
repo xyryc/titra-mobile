@@ -137,7 +137,6 @@ class _AudioCallViewState extends State<_AudioCallView> {
   void dispose() {
     _vm?.removeListener(_onVm);
     _coordinator?.setCallScreenVisible(false);
-    unawaited(_coordinator?.showActiveCallOverlay());
     _coordinator = null;
     _vm = null;
     super.dispose();

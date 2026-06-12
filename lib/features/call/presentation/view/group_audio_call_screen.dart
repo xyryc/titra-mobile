@@ -331,7 +331,6 @@ class _GroupAudioCallViewState extends State<_GroupAudioCallView> {
       darkStyle: true,
       onBack: () {
         _coordinator?.setCallScreenVisible(false);
-        unawaited(_coordinator?.showActiveCallOverlay());
         Navigator.of(context).pop();
       },
       actions: [
