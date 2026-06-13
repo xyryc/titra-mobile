@@ -1785,6 +1785,7 @@ class _ChatViewState extends State<_ChatView> {
     }
     final conv = vm.effectiveConversationId!;
     final peer = vm.effectivePeerUserId!;
+    final coordinator = context.read<IncomingCallCoordinator>();
     await Navigator.of(context).push<void>(
       MaterialPageRoute<void>(
         settings: RouteSettings(name: video ? '/video_call' : '/audio_call'),
@@ -1796,6 +1797,7 @@ class _ChatViewState extends State<_ChatView> {
                 peerUserId: peer,
                 isOutgoing: true,
                 avatarUrl: vm.avatarUrl,
+                incomingCallCoordinator: coordinator,
               )
             : AudioCallScreen(
                 contactName: vm.contactName,
@@ -1804,6 +1806,7 @@ class _ChatViewState extends State<_ChatView> {
                 peerUserId: peer,
                 isOutgoing: true,
                 avatarUrl: vm.avatarUrl,
+                incomingCallCoordinator: coordinator,
               ),
       ),
     );
