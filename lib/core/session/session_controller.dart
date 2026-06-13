@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -66,6 +67,13 @@ class SessionController extends ChangeNotifier {
       await _prefs.setString(StorageKeys.deviceId, _deviceId!);
     }
     _hydrated = true;
+
+    // Sync to SharedPreferences for native access (decline from notification banner)
+    if (_sessionToken != null) {
+      unawaited(_prefs.setString('native_session_token', _sessionToken!));
+    }
+    unawaited(_prefs.setString('native_device_id', deviceId));
+
     notifyListeners();
   }
 
