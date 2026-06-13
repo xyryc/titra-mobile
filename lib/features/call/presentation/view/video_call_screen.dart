@@ -46,7 +46,8 @@ class VideoCallScreen extends StatelessWidget {
     final existingVm = coordinator.activeViewModel;
 
     if (existingVm is VideoCallViewModel &&
-        existingVm.callSessionId == callSessionId) {
+        existingVm.activeCallSessionId != null &&
+        existingVm.activeCallSessionId == callSessionId) {
       return ChangeNotifierProvider.value(
         value: existingVm,
         child: const _VideoCallView(),

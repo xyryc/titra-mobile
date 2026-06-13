@@ -75,7 +75,8 @@ class AudioCallScreen extends StatelessWidget {
     final existingVm = coordinator.activeViewModel;
 
     if (existingVm is AudioCallViewModel &&
-        existingVm.callSessionId == callSessionId) {
+        existingVm.activeCallSessionId != null &&
+        existingVm.activeCallSessionId == callSessionId) {
       return ChangeNotifierProvider.value(
         key: const ValueKey('audio-call-provider-value'),
         value: existingVm,

@@ -57,6 +57,7 @@ class GroupVideoCallViewModel extends ChangeNotifier {
 
   GroupMeshCallCoordinator? _mesh;
   String? _activeCallSessionId;
+  String? get activeCallSessionId => _activeCallSessionId;
   StreamSubscription<Map<String, dynamic>>? _signalSub;
   StreamSubscription<Map<String, dynamic>>? _callStateSub;
   StreamSubscription<Map<String, dynamic>>? _callPeerJoinedSub;

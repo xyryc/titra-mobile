@@ -102,6 +102,7 @@ class AudioCallViewModel extends ChangeNotifier {
   bool _uiDetached = false;
 
   String? _activeCallSessionId;
+  String? get activeCallSessionId => _activeCallSessionId;
   WebRtcCallSession? _rtc;
   StreamSubscription<Map<String, dynamic>>? _signalSub;
   StreamSubscription<Map<String, dynamic>>? _callStateSub;
